@@ -1,0 +1,20 @@
+# Nix build results (symlinks into /nix/store)
+result
+result-*
+
+# VM symlinks (nix-built VM scripts)
+web-vm
+db-vm
+full-vm
+
+# VM disk images
+*.qcow2
+
+# Lock file
+flake.lock
+
+
+# Vim/Neovim swap files
+*.swp
+*.swo
+*.swn
