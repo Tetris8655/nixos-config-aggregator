@@ -10,10 +10,6 @@ full-vm
 # VM disk images
 *.qcow2
 
-# Lock file
-flake.lock
-
-
 # Vim/Neovim swap files
 *.swp
 *.swo
