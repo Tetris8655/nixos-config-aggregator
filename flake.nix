@@ -16,7 +16,6 @@
       overlay = myLib.mkOverlay ./packages;
     in
     {
-      # Requirement: packages available AS A FLAKE OUTPUT.
       overlays.default = overlay;
 
       packages = forAllSystems (system:
@@ -51,7 +50,7 @@
           selectedModules = [ "web-server" "database" "dev-tools" "networking/firewall-strict" ];
         };
 
-       /* missing-host = myLib.mkHost {
+        /*missing-host = myLib.mkHost {
           system = "x86_64-linux";
           hostPath = ./hosts/full-host/configuration.nix;
           modulesDir = ./modules;
@@ -72,7 +71,7 @@
         web-host = self.nixosConfigurations.web-host.config.system.build.toplevel;
         db-host = self.nixosConfigurations.db-host.config.system.build.toplevel;
 	full-host = self.nixosConfigurations.full-host.config.system.build.toplevel;
-       /* missing-host = self.nixosConfigurations.missing-host.config.system.build.toplevel;
+      /* missing-host = self.nixosConfigurations.missing-host.config.system.build.toplevel;
         duplicate-host = self.nixosConfigurations.duplicate-host.config.system.build.toplevel;*/
       });
     };
