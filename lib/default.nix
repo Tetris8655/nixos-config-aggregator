@@ -26,12 +26,13 @@ let
   selectModules = available: selected:
     let 
       unknown = lib.subtractLists (lib.attrNames available) selected;
-      duplicates = selected != lib.unique selected;
+      grouped = lib.groupBy (x: x) selected;
+      duplicates = lib.attrNames (lib.filterAttrs (_: v: builtins.length v > 1) grouped);
     in 
       assert lib.assertMsg (unknown == [ ])
         "mkHost: unknown module(s): ${lib.concatStringsSep ", " unknown}. Available: ${lib.concatStringsSep ", " (lib.attrNames available)}";
-      assert lib.assertMsg (!duplicates)
-        "mkHost: duplicate module(s): ${lib.concatStringsSep ", " selected}";
+      assert lib.assertMsg (duplicates == [])
+        "mkHost: duplicate module(s): ${lib.concatStringsSep ", " duplicates}";
       map (name: available.${name}) selected;
 
   packageDirsOf = dir:
